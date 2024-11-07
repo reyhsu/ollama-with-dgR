@@ -15,7 +15,7 @@ brew install helm
 https://github.com/otwld/ollama-helm.git
  - Repo 中包含了安裝的資訊、values 等...資訊
  - Ollama：通用型大模型框架
- - Mistral ：是一個大型語言模型
+ - Mistral：是一個大型語言模型
 ```
 git clone https://github.com/otwld/ollama-helm.git
 ```
@@ -41,6 +41,9 @@ http://localhost:8080
 ---
 # Part2.
 ### 安裝 OpenDGR:
+ - OpenDGR 是一個 API gateway 和管理解決方案，可作為客戶端應用程式和後端服務之間的中介
+ - 直接透過 cURL 指令抓取 yaml 並安裝到 rancher
+ - 這個 yaml 內的資源包含 namespace, deployment, svc，可以運行到任何 k8s 架構裡
 ```
 curl -s https://raw.githubusercontent.com/TPIsoftwareOSPO/digiRunner_Open/refs/heads/master/manifest/open_dgr.yaml | kubectl apply -f -
 ```
@@ -79,16 +82,25 @@ http://<service-name>.<namespace>.svc.cluster.local
 # 範例:
 http://ollama.ollama.svc.cluster.local:11434/api/chat
 ```
+ - 於 rancher 上找到 SVC 資訊 (IP:port)
+ - 或使用 k8s 的內部完整名稱
 ![svc1](image/svc1.png)
-![svc2](image/svc2.png)
-![svc3](image/svc3.png)
+ - 註冊 API
+![api1](image/api1.png)
+ - 呼叫 API
+![api2](image/api2.png)
+ - 查看結果
+![api3](image/api3.png)
 ### 情境2 (外部 API )
+ - 註冊 cluster 外部 API，將 openDGR 當作 proxy 使用
 ```
 https://httpbin.org/ip
 ```
 
+---
+
 ### Ollama API 格式:
-#### 參照 ollama git hub 說明
+#### 參照 ollama github 說明
 https://github.com/ollama/ollama/blob/main/docs/api.md#generate-a-completion
 ```
 curl http://<SVC_IP>:<PORT>/api/chat -d '
