@@ -1,8 +1,13 @@
 # ollama-with-dgR
 ---
 
-# 下載 Rancher desktop
+# 使用 Rancher desktop 作為操作環境
+### 下載 Rancher desktop
 https://rancherdesktop.io/
+
+---
+# 架構圖
+![k3s](image/k3s.png)
 
 ---
 # Part1.
